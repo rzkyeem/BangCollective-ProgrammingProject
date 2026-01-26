@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="mb-5">
+    <h3>"CREATE NEW COLLECTION"</h3>
+    <form action="/create_playlist" method="POST" class="d-flex gap-2">
+        <input type="text" name="playlist_name" class="form-control" placeholder="E.G. BLUES / NIGHT DRIVE" style="border: 2px solid #000; border-radius: 0;" required>
+        <button type="submit" class="btn btn-dark" style="border-radius: 0;">CREATE</button>
+    </form>
+</div>
+
+<h3>"YOUR COLLECTIONS"</h3>
+<div class="row mt-4">
+    {% for pl in playlists %}
+    <div class="col-md-4 mb-4">
+        <div class="card p-3" style="border: 2px solid #000; border-radius: 0; box-shadow: 8px 8px 0px #000; position: relative;">
+            <a href="{{ url_for('delete_playlist', playlist_id=pl.id) }}" 
+               class="text-danger" 
+               style="position: absolute; top: 10px; right: 15px; text-decoration: none; font-weight: bold;"
+               onclick="return confirm('Hapus playlist ini beserta isinya?')">
+               [ X ]
+            </a>
+
+            <h4 class="fw-bold">{{ pl.name|upper }}</h4>
+            <p>{{ pl.items|length }} SONGS</p>
+            <a href="/playlist/{{ pl.id }}" class="btn btn-sm btn-outline-dark" style="border-radius: 0;"> VIEW </a>
+        </div>
+    </div>
+    {% else %}
+    <p class="text-muted">NO COLLECTIONS FOUND. CREATE ONE ABOVE.</p>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card p-4 shadow-sm">
+    <h3>Admin Panel: Add New Song</h3>
+    <form method="POST">
+        <div class="mb-3">
+            <label>Song Title</label>
+            <input type="text" name="title" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>Artist</label>
+            <input type="text" name="artist" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add to Global Library</button>
+    </form>
+</div>
+{% endblock %}
